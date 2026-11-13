@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta_title">Chinesiologo & Massaggiatore | Benessere, Movimento e Calisthenics</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            teal: '#3B8B88',
+                            darkTeal: '#245956',
+                            lightTeal: '#E6F3F2',
+                            sage: '#89B86D',
+                            lightSage: '#F0F7EB',
+                            sand: '#F7F5EE',
+                            dark: '#1E293B',
+                            muted: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #E6F3F2 0%, #F7F5EE 50%, #F0F7EB 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(59, 139, 136, 0.12), 0 8px 10px -6px rgba(59, 139, 136, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-teal selection:text-white">
+
+    <!-- Header & Navigazione Sticky -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Dicitura Principale -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <img src="logo.jpg" alt="Logo Chinesiologo e Massaggiatore" class="w-12 h-12 rounded-full object-cover shadow-md border-2 border-brand-teal p-0.5 bg-white transition-transform group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/100x100/3B8B88/ffffff?text=Logo';">
+                    <div>
+                        <span class="block font-bold text-lg text-slate-900 tracking-tight leading-none" data-i18n="logo_title">Chinesiologo & Massaggiatore</span>
+                        <span class="text-xs font-semibold text-brand-teal tracking-wider uppercase" data-i18n="logo_subtitle">Benessere & Movimento</span>
+                    </div>
+                </a>
+
+                <!-- Navigazione Desktop -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#chi-sono" class="hover:text-brand-teal transition" data-i18n="nav_chi_sono">Chi Sono</a>
+                    <a href="#servizi" class="hover:text-brand-teal transition" data-i18n="nav_servizi">Servizi</a>
+                    <a href="#competenze" class="hover:text-brand-teal transition" data-i18n="nav_competenze">Competenze</a>
+                    <a href="#calisthenics" class="hover:text-brand-teal transition" data-i18n="nav_calisthenics">Calisthenics</a>
+                    <a href="#contatti" class="hover:text-brand-teal transition" data-i18n="nav_contatti">Contatti</a>
+                </nav>
+
+                <!-- CTA Button Desktop & Lingua -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <!-- Selettore Lingua IT / EN -->
+                    <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-full border border-slate-200 text-xs font-bold">
+                        <button type="button" onclick="setLanguage('it')" id="lang-it" class="px-2.5 py-1 rounded-full bg-brand-teal text-white transition">IT</button>
+                        <button type="button" onclick="setLanguage('en')" id="lang-en" class="px-2.5 py-1 rounded-full text-slate-600 hover:text-brand-teal transition">EN</button>
+                    </div>
+
+                    <a href="#contatti" class="bg-brand-teal hover:bg-brand-darkTeal text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition" data-i18n="cta_prenota">
+                        Prenota Consulenza
+                    </a>
+                </div>
+
+                <!-- Pulsante Menu Mobile -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-full border border-slate-200 text-xs font-bold">
+                        <button type="button" onclick="setLanguage('it')" id="m-lang-it" class="px-2 py-0.5 rounded-full bg-brand-teal text-white">IT</button>
+                        <button type="button" onclick="setLanguage('en')" id="m-lang-en" class="px-2 py-0.5 rounded-full text-slate-600">EN</button>
+                    </div>
+                    <button id="mobile-menu-btn" aria-label="Apri Menu" class="text-slate-600 hover:text-brand-teal focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 pt-2 pb-6 space-y-3">
+            <a href="#chi-sono" class="block text-slate-700 hover:text-brand-teal font-medium py-2" data-i18n="nav_chi_sono">Chi Sono</a>
+            <a href="#servizi" class="block text-slate-700 hover:text-brand-teal font-medium py-2" data-i18n="nav_servizi">Servizi</a>
+            <a href="#competenze" class="block text-slate-700 hover:text-brand-teal font-medium py-2" data-i18n="nav_competenze">Competenze</a>
+            <a href="#calisthenics" class="block text-slate-700 hover:text-brand-teal font-medium py-2" data-i18n="nav_calisthenics_pt">Calisthenics & PT</a>
+            <a href="#contatti" class="block text-slate-700 hover:text-brand-teal font-medium py-2" data-i18n="nav_contatti">Contatti</a>
+            <a href="#contatti" class="block text-center bg-brand-teal text-white font-semibold py-3 rounded-xl mt-4 shadow" data-i18n="cta_richiedi">
+                Richiedi Informazioni
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-16 md:py-24 overflow-hidden relative border-b border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6 text-center md:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full border border-brand-teal/20 text-brand-darkTeal text-xs font-bold tracking-wide uppercase shadow-sm">
+                        <i class="fa-solid fa-leaf text-brand-sage"></i>
+                        <span data-i18n="hero_badge">Movimento, Postura e Benessere Su Misura</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight" data-i18n="hero_title">
+                        Ottimizza il tuo movimento, <span class="text-brand-teal">ritrova il tuo benessere.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-600 font-normal leading-relaxed max-w-xl mx-auto md:mx-0" data-i18n="hero_desc">
+                        Percorsi personalizzati di <strong>Chinesiologia</strong>, <strong>Massaggio</strong> e <strong>Personal Training</strong>. Che tu sia un atleta o una persona sedentaria, il tuo corpo merita di muoversi al meglio e senza tensioni.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="#contatti" class="w-full sm:w-auto text-center bg-brand-teal hover:bg-brand-darkTeal text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5" data-i18n="hero_btn_app">
+                            Prenota un Appuntamento
+                        </a>
+                        <a href="#chi-sono" class="w-full sm:w-auto text-center bg-white hover:bg-slate-50 text-slate-700 font-semibold px-8 py-4 rounded-xl border border-slate-200 shadow-sm transition" data-i18n="hero_btn_chi">
+                            Scopri Chi Sono
+                        </a>
+                    </div>
+
+                    <!-- Badge Garanzia Approccio -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/60 text-center md:text-left">
+                        <div>
+                            <span class="block text-xl font-bold text-slate-900">100%</span>
+                            <span class="text-xs text-slate-500" data-i18n="badge_1">Personalizzato</span>
+                        </div>
+                        <div>
+                            <span class="block text-xl font-bold text-slate-900" data-i18n="badge_2_title">Analisi</span>
+                            <span class="text-xs text-slate-500" data-i18n="badge_2_sub">Valutazione Motoria</span>
+                        </div>
+                        <div>
+                            <span class="block text-xl font-bold text-slate-900" data-i18n="badge_3_title">Mirato</span>
+                            <span class="text-xs text-slate-500" data-i18n="badge_3_sub">Postura e Benessere</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Immagine di Copertina -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                        <img src="hero.jpg" alt="Copertina Allenamento e Benessere" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='logo.jpg';">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-sage/20 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -top-6 -right-6 w-40 h-40 bg-brand-teal/20 rounded-full blur-2xl pointer-events-none"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Chi Sono -->
+    <section id="chi-sono" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Colonna Testo -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block bg-brand-lightTeal text-brand-darkTeal font-bold px-3.5 py-1 rounded-md text-xs uppercase tracking-wider" data-i18n="about_tag">
+                        Chi Sono & La mia Visione
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900" data-i18n="about_title">
+                        Un approccio scientifico e integrato per far stare bene il tuo corpo.
+                    </h2>
+
+                    <p class="text-slate-600 leading-relaxed" data-i18n="about_p1">
+                        Esercito la professione di <strong>Chinesiologo</strong> e <strong>Operatore del Benessere / Massaggiatore</strong> applicando un approccio orientato alla valutazione biomeccanica, al recupero funzionale e all'ottimizzazione del movimento umano.
+                    </p>
+
+                    <p class="text-slate-600 leading-relaxed" data-i18n="about_p2">
+                        Combino la <strong>rieducazione motoria attiva</strong> con <strong>tecniche manuali avanzate</strong> per ridurre le tensioni muscolari, eliminare i compensi posturali scorretti e prevenire l'affaticamento o gli squilibri corporei sia nella vita di tutti i giorni che nello sport.
+                    </p>
+
+                    <!-- Box Certificazioni & Esperienza -->
+                    <div class="bg-brand-sand/60 rounded-2xl p-6 border border-amber-900/5 space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-brand-teal text-white rounded-xl flex items-center justify-center shrink-0 shadow-md">
+                                <i class="fa-solid fa-award text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base" data-i18n="about_exp_title">Esperienza Professionale di Alto Livello</h4>
+                                <p class="text-sm text-slate-600 mt-1" data-i18n="about_exp_desc">
+                                    Massaggiatore Sportivo certificato <strong>DIABASI® Scuola Professionale di Massaggio</strong>. Selezionato per fornire supporto ufficiale agli atleti della <strong>Nazionale Italiana Rugby</strong> durante il raduno per il Torneo Sei Nazioni.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target di riferimento -->
+                    <div class="pt-2">
+                        <h4 class="font-bold text-slate-900 mb-3" data-i18n="target_title">A chi sono dedicati i miei percorsi?</h4>
+                        <div class="grid sm:grid-cols-2 gap-3 text-sm text-slate-600">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-sage"></i>
+                                <span data-i18n="target_1">Persone sedentarie & lavoratori d'ufficio</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-sage"></i>
+                                <span data-i18n="target_2">Chi vuole migliorare mobilità e postura</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-sage"></i>
+                                <span data-i18n="target_3">Atleti amatoriali e professionisti</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-sage"></i>
+                                <span data-i18n="target_4">Appassionati di Calisthenics & Bodyweight</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Colonna Card Profilo / Metodo -->
+                <div class="lg:col-span-5">
+                    <div class="bg-brand-dark text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                        <div class="relative z-10 space-y-6">
+                            <div class="w-16 h-16 bg-brand-teal/30 rounded-2xl flex items-center justify-center border border-brand-teal/50">
+                                <i class="fa-solid fa-heart-pulse text-brand-teal text-3xl"></i>
+                            </div>
+
+                            <h3 class="text-2xl font-bold" data-i18n="card_title">Integrazione Tra Movimento e Trattamento Manuale</h3>
+                            
+                            <p class="text-slate-300 text-sm leading-relaxed" data-i18n="card_quote">
+                                "La salute del corpo passa attraverso l'equilibrio: educare le strutture muscolari al movimento corretto e liberarle dalle tensioni quotidiane con trattamenti manuali mirati."
+                            </p>
+
+                            <ul class="space-y-3 text-xs text-slate-300 border-t border-slate-700/60 pt-4">
+                                <li class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-check text-brand-sage"></i>
+                                    <span data-i18n="card_li1">Nessun approccio clinico o sanitario: educazione motoria e benessere.</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-check text-brand-sage"></i>
+                                    <span data-i18n="card_li2">Percorsi e valutazioni su misura per le tue abitudini.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-teal/10 rounded-full blur-xl"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Servizi Principali -->
+    <section id="servizi" class="py-20 bg-slate-50 border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-teal font-bold text-xs uppercase tracking-wider" data-i18n="serv_tag">Servizi Professionali</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-i18n="serv_title">I Miei Servizi Principali</h2>
+                <p class="text-slate-600 mt-4" data-i18n="serv_desc">Scopri i percorsi pensati per recuperare l'efficienza fisica, allentare la stanchezza muscolare e raggiungere i tuoi obiettivi di movimento.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Servizio 1: Chinesiologia -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 card-hover flex flex-col">
+                    <div class="h-56 bg-slate-200 relative overflow-hidden">
+                        <img src="chinesiologia.jpg" alt="Chinesiologia e Rieducazione Motoria" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80';">
+                        <div class="absolute top-4 left-4 bg-brand-teal text-white text-xs font-bold px-3 py-1 rounded-full uppercase" data-i18n="s1_badge">
+                            Chinesiologia
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900" data-i18n="s1_title">Rieducazione Motoria & Chinesiologia</h3>
+                            <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="s1_desc">
+                                Valutazione posturale e biomeccanica del movimento. Programmi attivi per ripristinare le corrette catene cinetiche, correggere gli squilibri ed eliminare i compensi muscolari.
+                            </p>
+                        </div>
+                        <ul class="mt-6 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-500 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-teal mr-2"></i><span data-i18n="s1_li1">Screening della mobilità con protocolli FMS</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-teal mr-2"></i><span data-i18n="s1_li2">Ottimizzazione delle leve corporee</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Servizio 2: Trattamento Manuale & Massaggio -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 card-hover flex flex-col">
+                    <div class="h-56 bg-slate-200 relative overflow-hidden">
+                        <img src="massaggio.jpg" alt="Massaggio Decontratturante e Sportivo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80';">
+                        <div class="absolute top-4 left-4 bg-brand-sage text-white text-xs font-bold px-3 py-1 rounded-full uppercase" data-i18n="s2_badge">
+                            Massaggi
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900" data-i18n="s2_title">Trattamenti Manuali & Massaggio</h3>
+                            <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="s2_desc">
+                                Trattamenti professionali pensati per il recupero muscolare, il rilassamento e il supporto all'attività fisica. Dalle tecniche decontratturanti per le tensioni quotidiane al massaggio sportivo (pre e post-gara), integrato all'occorrenza con il Taping Kinesiologico.
+                            </p>
+                        </div>
+                        <ul class="mt-6 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-500 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-sage mr-2"></i><span data-i18n="s2_li1">Scioglimento delle tensioni e recupero muscolare</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-sage mr-2"></i><span data-i18n="s2_li2">Trattamenti di benessere, rilassamento e linfodrenaggio metodo Vodder</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Servizio 3: Calisthenics & PT -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 card-hover flex flex-col">
+                    <div class="h-56 bg-slate-200 relative overflow-hidden">
+                        <img src="calisthenics.jpg" alt="Personal Training Calisthenics" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?auto=format&fit=crop&w=800&q=80';">
+                        <div class="absolute top-4 left-4 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full uppercase" data-i18n="s3_badge">
+                            Personal Training
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900" data-i18n="s3_title">Personal Training & Calisthenics</h3>
+                            <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="s3_desc">
+                                Allenamento a corpo libero (Calisthenics), potenziamento della forza funzionale, controllo motorio e flessibilità. Disponibile sia in presenza che con coaching online.
+                            </p>
+                        </div>
+                        <ul class="mt-6 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-500 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-slate-700 mr-2"></i><span data-i18n="s3_li1">Schede personalizzate + Videochiamate</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-slate-700 mr-2"></i><span data-i18n="s3_li2">Progressioni sicure dal livello base ad avanzato</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEZIONE: Chinesiologia Adattata & AFA (Posizionata esattamente prima di Competenze) -->
+    <section id="chinesiologia-adattata" class="py-20 bg-white border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-block bg-brand-lightTeal text-brand-darkTeal font-bold px-3.5 py-1 rounded-md text-xs uppercase tracking-wider" data-i18n="afa_tag">
+                        Attività Motoria Preventiva & Adattata (AFA / LM-67)
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900" data-i18n="afa_title">
+                        Chinesiologia Adattata per Condizioni Particolari e Terza Età
+                    </h2>
+
+                    <p class="text-slate-600 leading-relaxed" data-i18n="afa_p1">
+                        Percorsi specialistici basati su lauree magistrali in Scienze Motorie Preventive e Adattate (LM-67), strutturati per accompagnare con sicurezza chi convive con condizioni croniche, rigidità articolari o mobilità ridotta.
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center text-xs mt-1 shrink-0">✓</div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 text-sm" data-i18n="afa_item1_title">Artrite e Artrite Reumatoide</h5>
+                                <p class="text-xs text-slate-500" data-i18n="afa_item1_desc">Esercizi mirati a basso impatto per preservare il ROM articolare e ridurre il dolore.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center text-xs mt-1 shrink-0">✓</div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 text-sm" data-i18n="afa_item2_title">Parkinson</h5>
+                                <p class="text-xs text-slate-500" data-i18n="afa_item2_desc">Protocolli di stimolazione neuromuscolare, equilibrio e prevenzione delle cadute.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center text-xs mt-1 shrink-0">✓</div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 text-sm" data-i18n="afa_item3_title">Carrozzina e Ridotta Mobilità</h5>
+                                <p class="text-xs text-slate-500" data-i18n="afa_item3_desc">Attività motoria adattata per favorire la circolazione, il tono del tronco e l'autonomia.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center text-xs mt-1 shrink-0">✓</div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 text-sm" data-i18n="afa_item4_title">Terza Età & Ginnastica Dolce</h5>
+                                <p class="text-xs text-slate-500" data-i18n="afa_item4_desc">Mantenimento delle autonomie funzionali quotidiane, forza e coordinazione in sicurezza.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="bg-brand-sand/70 p-8 rounded-3xl border border-brand-teal/20 space-y-6 shadow-sm">
+                        <div class="w-14 h-14 bg-brand-teal text-white rounded-2xl flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-hands-holding-child text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="afa_box_title">Professionalità</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed" data-i18n="afa_box_desc">
+                            Ogni programma viene stilato dopo un'attenta valutazione funzionale iniziale, tenendo conto di eventuali limitazioni mediche (previa autorizzazione del medico curante) per garantire un'attività fisica sicura, utile ed efficace.
+                        </p>
+                        <div class="pt-4 border-t border-slate-200">
+                            <a href="#contatti" class="inline-block bg-brand-teal hover:bg-brand-darkTeal text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl transition shadow" data-i18n="afa_box_btn">
+                                Richiedi Informazioni AFA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Dettaglio Competenze -->
+    <section id="competenze" class="py-20 bg-slate-50 border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-sage font-bold text-xs uppercase tracking-wider" data-i18n="comp_tag">Qualità & Metodo</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-i18n="comp_title">Competenze nel Dettaglio</h2>
+                <p class="text-slate-600 mt-4" data-i18n="comp_desc">Le fondamenta su cui si basano le mie sessioni di lavoro motorio e manuale.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Competenza 1 -->
+                <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm space-y-3">
+                    <div class="w-10 h-10 bg-brand-teal text-white rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900" data-i18n="c1_title">Valutazione Funzionale & FMS</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed" data-i18n="c1_desc">
+                        Analisi biomeccanica del movimento e screening FMS della mobilità e stabilità per individuare l'origine di rigidità e compensi muscolari.
+                    </p>
+                </div>
+
+                <!-- Competenza 2 -->
+                <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm space-y-3">
+                    <div class="w-10 h-10 bg-brand-sage text-white rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900" data-i18n="c2_title">Rieducazione & Ri-atletizzazione</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed" data-i18n="c2_desc">
+                        Programmi di esercizio mirati per ripristinare la piena efficienza fisica, recuperare schemi motori corretti e mantenere il corpo in salute.
+                    </p>
+                </div>
+
+                <!-- Competenza 3 -->
+                <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm space-y-3">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900" data-i18n="c3_title">Massaggio Sportivo & Manuale</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed" data-i18n="c3_desc">
+                        Decontrazione muscolare, rigenerazione post-sforzo e trattamenti preparatori con standard applicati anche ad atleti agonisti.
+                    </p>
+                </div>
+
+                <!-- Competenza 4 -->
+                <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm space-y-3">
+                    <div class="w-10 h-10 bg-amber-600 text-white rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-tape"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900" data-i18n="c4_title">Taping Kinesiologico</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed" data-i18n="c4_desc">
+                        Applicazione decompressiva o stabilizzante di taping per supportare i tessuti muscolari e facilitare il drenaggio e il relax.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Calisthenics & Personal Training -->
+    <section id="calisthenics" class="py-20 gradient-bg border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <span class="bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full uppercase" data-i18n="cal_tag">Specialità Personal Training</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900" data-i18n="cal_title">
+                        Impara a Dominare il Tuo Corpo con il Calisthenics
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed" data-i18n="cal_desc">
+                        Il Calisthenics è l'arte di utilizzare il proprio peso corporeo per sviluppare forza, coordinazione, equilibrio e mobilità. Non importa quale sia il tuo punto di partenza: struttureremo progressioni graduali ed efficaci.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center text-xs mt-1 shrink-0">✓</div>
+                            <div>
+                                <h5 class="font-bold text-slate-900" data-i18n="cal_f1_title">Mobilità Articolare & Controllo Motorio</h5>
+                                <p class="text-xs text-slate-500" data-i18n="cal_f1_desc">Prima di aggiungere forza, insegniamo alle tue articolazioni a muoversi liberamente e in sicurezza.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-teal text-white flex items-center justify-center text-xs mt-1 shrink-0">✓</div>
+                            <div>
+                                <h5 class="font-bold text-slate-900" data-i18n="cal_f2_title">Programmi Personalizzati (In Presenza o Online)</h5>
+                                <p class="text-xs text-slate-500" data-i18n="cal_f2_desc">Schede d'allenamento dettagliate affiancate da videochiamate di verifica periodica delle esecuzioni.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                        <img src="calisthenics-focus.jpg" alt="Allenamento Calisthenics e Forza" class="w-full h-80 sm:h-96 object-cover" onerror="this.onerror=null; this.src='calisthenics.jpg';">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Contatti & Prenotazioni -->
+    <section id="contatti" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- Info Contatto -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-brand-teal font-bold text-xs uppercase tracking-wider" data-i18n="contact_tag">Entriamo in Contatto</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-2" data-i18n="contact_title">Prenota una consulenza o richiedi informazioni</h2>
+                        <p class="text-slate-600 mt-4 text-sm leading-relaxed" data-i18n="contact_desc">
+                            Compila il modulo indicando il servizio di tuo interesse. Ti risponderò al più presto per concordare un appuntamento o per fornirti tutti i dettagli sui percorsi.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="w-10 h-10 bg-brand-lightTeal text-brand-darkTeal rounded-lg flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-slate-400 font-medium" data-i18n="c_mod_label">Modalità</span>
+                                <span class="font-bold text-slate-800" data-i18n="c_mod_val">In Studio / Servizio a Domicilio / Online</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="w-10 h-10 bg-brand-lightSage text-brand-sage rounded-lg flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-slate-400 font-medium">Email</span>
+                                <span class="font-bold text-slate-800">lucale58@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-slate-400 font-medium">WhatsApp</span>
+                                <span class="font-bold text-slate-800">dr.leggiadro</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-brand-lightTeal/40 rounded-xl border border-brand-teal/20 text-xs text-brand-darkTeal leading-relaxed" data-i18n="legal_note">
+                        <i class="fa-solid fa-circle-info mr-1"></i>
+                        <strong>Nota Professionale:</strong> Le prestazioni erogate rientrano nell'ambito del benessere e della rieducazione motoria non sanitaria ex L. 4/2013. Non hanno carattere medico né fisioterapico.
+                    </div>
+                </div>
+
+                <!-- Form Contatto -->
+                <div class="lg:col-span-7 bg-slate-50 p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+                    <form action="mailto:lucale58@gmail.com" method="POST" enctype="text/plain" class="space-y-5">
+                        
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="nome" class="block text-xs font-bold uppercase text-slate-700 mb-2" data-i18n="form_name">Nome e Cognome *</label>
+                                <input type="text" id="nome" name="Nome" required placeholder="Inserisci il tuo nome" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none bg-white text-sm">
+                            </div>
+                            <div>
+                                <label for="recapito" class="block text-xs font-bold uppercase text-slate-700 mb-2" data-i18n="form_contact">Email o Telefono *</label>
+                                <input type="text" id="recapito" name="Contatto" required placeholder="La tua email o recapito" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none bg-white text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Menu a tendina dei servizi richiesti -->
+                        <div>
+                            <label for="servizio" class="block text-xs font-bold uppercase text-slate-700 mb-2" data-i18n="form_service">Servizio di Interesse *</label>
+                            <select id="servizio" name="Servizio_Scelto" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none bg-white text-sm text-slate-800">
+                                <option value="" disabled selected data-i18n="opt_default">Seleziona un servizio dal menu...</option>
+                                <option value="Chinesiologia Adattata / AFA" data-i18n="opt_afa">Chinesiologia Adattata & AFA (Artrite, Parkinson, mobilità ridotta)</option>
+                                <option value="Trattamento manuale / Massaggio" data-i18n="opt_1">Trattamento manuale / Massaggio (singolo o pacchetto 5 sedute)</option>
+                                <option value="Seduta di Chinesiologia / Personal Training" data-i18n="opt_2">Seduta di Chinesiologia / Personal Training</option>
+                                <option value="Consulenza e valutazione motoria" data-i18n="opt_3">Consulenza e valutazione motoria</option>
+                                <option value="Taping kinesiologico" data-i18n="opt_4">Taping kinesiologico</option>
+                                <option value="Programma di allenamento online" data-i18n="opt_5">Programma di allenamento online (scheda personalizzata + 2 videochiamate)</option>
+                                <option value="Servizio a domicilio" data-i18n="opt_6">Servizio a domicilio</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="messaggio" class="block text-xs font-bold uppercase text-slate-700 mb-2" data-i18n="form_msg">Messaggio o Note</label>
+                            <textarea id="messaggio" name="Messaggio_Note" rows="4" placeholder="Descrivi brevemente di cosa hai bisogno..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none bg-white text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-teal hover:bg-brand-darkTeal text-white font-bold py-4 rounded-xl shadow-lg transition duration-200 text-sm uppercase tracking-wider" data-i18n="form_submit">
+                            Invia Richiesta via Email
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="logo.jpg" alt="Logo" class="w-8 h-8 rounded-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/100x100/3B8B88/ffffff?text=Logo';">
+                <span class="text-white font-bold text-sm" data-i18n="logo_title">Chinesiologo & Massaggiatore</span>
+            </div>
+            <p class="text-center sm:text-right" data-i18n="footer_copy">&copy; 2026 Tutti i diritti riservati. Attività di scienze motorie e benessere ex L. 4/2013.</p>
+        </div>
+    </footer>
+
+    <!-- Script Gestione UI & Traduzioni Sincronizzate -->
+    <script>
+        // Toggle Menu Mobile
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Dizionario Completo IT / EN
+        const i18nData = {
+            it: {
+                meta_title: "Chinesiologo & Massaggiatore | Benessere, Movimento e Calisthenics",
+                logo_title: "Chinesiologo & Massaggiatore",
+                logo_subtitle: "Benessere & Movimento",
+                nav_chi_sono: "Chi Sono",
+                nav_servizi: "Servizi",
+                nav_competenze: "Competenze",
+                nav_calisthenics: "Calisthenics",
+                nav_calisthenics_pt: "Calisthenics & PT",
+                nav_contatti: "Contatti",
+                cta_prenota: "Prenota Consulenza",
+                cta_richiedi: "Richiedi Informazioni",
+                hero_badge: "Movimento, Postura e Benessere Su Misura",
+                hero_title: 'Ottimizza il tuo movimento, <span class="text-brand-teal">ritrova il tuo benessere.</span>',
+                hero_desc: "Percorsi personalizzati di <strong>Chinesiologia</strong>, <strong>Massaggio</strong> e <strong>Personal Training</strong>. Che tu sia un atleta o una persona sedentaria, il tuo corpo merita di muoversi al meglio e senza tensioni.",
+                hero_btn_app: "Prenota un Appuntamento",
+                hero_btn_chi: "Scopri Chi Sono",
+                badge_1: "Personalizzato",
+                badge_2_title: "Analisi",
+                badge_2_sub: "Valutazione Motoria",
+                badge_3_title: "Mirato",
+                badge_3_sub: "Postura e Benessere",
+                about_tag: "Chi Sono & La mia Visione",
+                about_title: "Un approccio scientifico e integrato per far stare bene il tuo corpo.",
+                about_p1: "Esercito la professione di <strong>Chinesiologo</strong> e <strong>Operatore del Benessere / Massaggiatore</strong> applicando un approccio orientato alla valutazione biomeccanica, al recupero funzionale e all'ottimizzazione del movimento umano.",
+                about_p2: "Combino la <strong>rieducazione motoria attiva</strong> con <strong>tecniche manuali avanzate</strong> per ridurre le tensioni muscolari, eliminare i compensi posturali scorretti e prevenire l'affaticamento o gli squilibri corporei sia nella vita di tutti i giorni che nello sport.",
+                about_exp_title: "Esperienza Professionale di Alto Livello",
+                about_exp_desc: "Massaggiatore Sportivo certificato <strong>DIABASI® Scuola Professionale di Massaggio</strong>. Selezionato per fornire supporto ufficiale agli atleti della <strong>Nazionale Italiana Rugby</strong> durante il raduno per il Torneo Sei Nazioni.",
+                target_title: "A chi sono dedicati i miei percorsi?",
+                target_1: "Persone sedentarie & lavoratori d'ufficio",
+                target_2: "Chi vuole migliorare mobilità e postura",
+                target_3: "Atleti amatoriali e professionisti",
+                target_4: "Appassionati di Calisthenics & Bodyweight",
+                card_title: "Integrazione Tra Movimento e Trattamento Manuale",
+                card_quote: "\"La salute del corpo passa attraverso l'equilibrio: educare le strutture muscolari al movimento corretto e liberarle dalle tensioni quotidiane con trattamenti manuali mirati.\"",
+                card_li1: "Nessun approccio clinico o sanitario: educazione motoria e benessere.",
+                card_li2: "Percorsi e valutazioni su misura per le tue abitudini.",
+                serv_tag: "Servizi Professionali",
+                serv_title: "I Miei Servizi Principali",
+                serv_desc: "Scopri i percorsi pensati per recuperare l'efficienza fisica, allentare la stanchezza muscolare e raggiungere i tuoi obiettivi di movimento.",
+                s1_badge: "Chinesiologia",
+                s1_title: "Rieducazione Motoria & Chinesiologia",
+                s1_desc: "Valutazione posturale e biomeccanica del movimento. Programmi attivi per ripristinare le corrette catene cinetiche, correggere gli squilibri ed eliminare i compensi muscolari.",
+                s1_li1: "Screening della mobilità con protocolli FMS",
+                s1_li2: "Ottimizzazione delle leve corporee",
+                s2_badge: "Massaggi",
+                s2_title: "Trattamenti Manuali & Massaggio",
+                s2_desc: "Trattamenti professionali pensati per il recupero muscolare, il rilassamento e il supporto all'attività fisica. Dalle tecniche decontratturanti per le tensioni quotidiane al massaggio sportivo (pre e post-gara), integrato all'occorrenza con il Taping Kinesiologico.",
+                s2_li1: "Scioglimento delle tensioni e recupero muscolare",
+                s2_li2: "Trattamenti di benessere, rilassamento e linfodrenaggio metodo Vodder",
+                s3_badge: "Personal Training",
+                s3_title: "Personal Training & Calisthenics",
+                s3_desc: "Allenamento a corpo libero (Calisthenics), potenziamento della forza funzionale, controllo motorio e flessibilità. Disponibile sia in presenza che con coaching online.",
+                s3_li1: "Schede personalizzate + Videochiamate",
+                s3_li2: "Progressioni sicure dal livello base ad avanzato",
+                afa_tag: "Attività Motoria Preventiva & Adattata (AFA / LM-67)",
+                afa_title: "Chinesiologia Adattata per Condizioni Particolari e Terza Età",
+                afa_p1: "Percorsi specialistici basati su lauree magistrali in Scienze Motorie Preventive e Adattate (LM-67), strutturati per accompagnare con sicurezza chi convive con condizioni croniche, rigidità articolari o mobilità ridotta.",
+                afa_item1_title: "Artrite e Artrite Reumatoide",
+                afa_item1_desc: "Esercizi mirati a basso impatto per preservare il ROM articolare e ridurre il dolore.",
+                afa_item2_title: "Parkinson",
+                afa_item2_desc: "Protocolli di stimolazione neuromuscolare, equilibrio e prevenzione delle cadute.",
+                afa_item3_title: "Carrozzina e Ridotta Mobilità",
+                afa_item3_desc: "Attività motoria adattata per favorire la circolazione, il tono del tronco e l'autonomia.",
+                afa_item4_title: "Terza Età & Ginnastica Dolce",
+                afa_item4_desc: "Mantenimento delle autonomie funzionali quotidiane, forza e coordinazione in sicurezza.",
+                afa_box_title: "Professionalità",
+                afa_box_desc: "Ogni programma viene stilato dopo un'attenta valutazione funzionale iniziale, tenendo conto di eventuali limitazioni mediche (previa autorizzazione del medico curante) per garantire un'attività fisica sicura, utile ed efficace.",
+                afa_box_btn: "Richiedi Informazioni AFA",
+                comp_tag: "Qualità & Metodo",
+                comp_title: "Competenze nel Dettaglio",
+                comp_desc: "Le fondamenta su cui si basano le mie sessioni di lavoro motorio e manuale.",
+                c1_title: "Valutazione Funzionale & FMS",
+                c1_desc: "Analisi biomeccanica del movimento e screening FMS della mobilità e stabilità per individuare l'origine di rigidità e compensi muscolari.",
+                c2_title: "Rieducazione & Ri-atletizzazione",
+                c2_desc: "Programmi di esercizio mirati per ripristinare la piena efficienza fisica, recuperare schemi motori corretti e mantenere il corpo in salute.",
+                c3_title: "Massaggio Sportivo & Manuale",
+                c3_desc: "Decontrazione muscolare, rigenerazione post-sforzo e trattamenti preparatori con standard applicati anche ad atleti agonisti.",
+                c4_title: "Taping Kinesiologico",
+                c4_desc: "Applicazione decompressiva o stabilizzante di taping per supportare i tessuti muscolari e facilitare il drenaggio e il relax.",
+                cal_tag: "Specialità Personal Training",
+                cal_title: "Impara a Dominare il Tuo Corpo con il Calisthenics",
+                cal_desc: "Il Calisthenics è l'arte di utilizzare il proprio peso corporeo per sviluppare forza, coordinazione, equilibrio e mobilità. Non importa quale sia il tuo punto di partenza: struttureremo progressioni graduali ed efficaci.",
+                cal_f1_title: "Mobilità Articolare & Controllo Motorio",
+                cal_f1_desc: "Prima di aggiungere forza, insegniamo alle tue articolazioni a muoversi liberamente e in sicurezza.",
+                cal_f2_title: "Programmi Personalizzati (In Presenza o Online)",
+                cal_f2_desc: "Schede d'allenamento dettagliate affiancate da videochiamate di verifica periodica delle esecuzioni.",
+                contact_tag: "Entriamo in Contatto",
+                contact_title: "Prenota una consulenza o richiedi informazioni",
+                contact_desc: "Compila il modulo indicando il servizio di tuo interesse. Ti risponderò al più presto per concordare un appuntamento o per fornirti tutti i dettagli sui percorsi.",
+                c_mod_label: "Modalità",
+                c_mod_val: "In Studio / Servizio a Domicilio / Online",
+                legal_note: "<strong>Nota Professionale:</strong> Le prestazioni erogate rientrano nell'ambito del benessere e della rieducazione motoria non sanitaria ex L. 4/2013. Non hanno carattere medico né fisioterapico.",
+                form_name: "Nome e Cognome *",
+                form_contact: "Email o Telefono *",
+                form_service: "Servizio di Interesse *",
+                opt_default: "Seleziona un servizio dal menu...",
+                opt_afa: "Chinesiologia Adattata & AFA (Artrite, Parkinson, mobilità ridotta)",
+                opt_1: "Trattamento manuale / Massaggio (singolo o pacchetto 5 sedute)",
+                opt_2: "Seduta di Chinesiologia / Personal Training",
+                opt_3: "Consulenza e valutazione motoria",
+                opt_4: "Taping kinesiologico",
+                opt_5: "Programma di allenamento online (scheda personalizzata + 2 videochiamate)",
+                opt_6: "Servizio a domicilio",
+                form_msg: "Messaggio o Note",
+                form_submit: "Invia Richiesta via Email",
+                footer_copy: "&copy; 2026 Tutti i diritti riservati. Attività di scienze motorie e benessere ex L. 4/2013."
+            },
+            en: {
+                meta_title: "Kinesiologist & Massage Therapist | Wellness, Movement & Calisthenics",
+                logo_title: "Kinesiologist & Massage Therapist",
+                logo_subtitle: "Wellness & Movement",
+                nav_chi_sono: "About Me",
+                nav_servizi: "Services",
+                nav_competenze: "Skills",
+                nav_calisthenics: "Calisthenics",
+                nav_calisthenics_pt: "Calisthenics & PT",
+                nav_contatti: "Contact",
+                cta_prenota: "Book Consultation",
+                cta_richiedi: "Request Info",
+                hero_badge: "Custom Movement, Posture and Wellness",
+                hero_title: 'Optimize your movement, <span class="text-brand-teal">restore your well-being.</span>',
+                hero_desc: "Personalized paths in <strong>Kinesiology</strong>, <strong>Massage</strong> and <strong>Personal Training</strong>. Whether you are an athlete or have a sedentary lifestyle, your body deserves to move at its best and without tension.",
+                hero_btn_app: "Book an Appointment",
+                hero_btn_chi: "Discover About Me",
+                badge_1: "Personalized",
+                badge_2_title: "Analysis",
+                badge_2_sub: "Motor Assessment",
+                badge_3_title: "Targeted",
+                badge_3_sub: "Posture & Wellness",
+                about_tag: "About Me & My Vision",
+                about_title: "A scientific and integrated approach to make your body feel great.",
+                about_p1: "I practice as a <strong>Kinesiologist</strong> and <strong>Wellness/Massage Operator</strong> applying an approach focused on biomechanical evaluation, functional recovery, and human movement optimization.",
+                about_p2: "I combine <strong>active motor re-education</strong> with <strong>advanced manual techniques</strong> to reduce muscle tension, eliminate incorrect postural compensations, and prevent fatigue or bodily imbalances in daily life and sports.",
+                about_exp_title: "High-Level Professional Experience",
+                about_exp_desc: "Certified Sports Massage Therapist by <strong>DIABASI® Professional Massage School</strong>. Selected to provide official support to the athletes of the <strong>Italian National Rugby Team</strong> during the Six Nations training camp.",
+                target_title: "Who are my programs for?",
+                target_1: "Sedentary people & office workers",
+                target_2: "Those wanting to improve mobility & posture",
+                target_3: "Amateur and professional athletes",
+                target_4: "Calisthenics & bodyweight enthusiasts",
+                card_title: "Integration Between Movement & Manual Treatment",
+                card_quote: "\"Body health is achieved through balance: educating muscle structures for correct movement and freeing them from daily tensions with targeted manual treatments.\"",
+                card_li1: "No clinical or healthcare approach: motor education and wellness.",
+                card_li2: "Tailored paths and assessments for your habits.",
+                serv_tag: "Professional Services",
+                serv_title: "My Main Services",
+                serv_desc: "Discover programs designed to recover physical efficiency, relieve muscle fatigue, and achieve your movement goals.",
+                s1_badge: "Kinesiology",
+                s1_title: "Motor Re-education & Kinesiology",
+                s1_desc: "Postural and biomechanical movement assessment. Active programs to restore correct kinetic chains, correct imbalances, and eliminate muscular compensations.",
+                s1_li1: "Mobility screening with FMS protocols",
+                s1_li2: "Body leverage optimization",
+                s2_badge: "Massages",
+                s2_title: "Manual Treatments & Massage",
+                s2_desc: "Professional treatments designed for muscle recovery, relaxation, and physical activity support. From decontracturing techniques for daily tension to sports massage (pre/post-competition), integrated with Kinesiology Taping when needed.",
+                s2_li1: "Tension relief and muscle recovery",
+                s2_li2: "Wellness, relaxation and Vodder method lymphatic drainage treatments",
+                s3_badge: "Personal Training",
+                s3_title: "Personal Training & Calisthenics",
+                s3_desc: "Bodyweight training (Calisthenics), functional strength building, motor control, and flexibility. Available both in-person and via online coaching.",
+                s3_li1: "Customized workout plans + Video calls",
+                s3_li2: "Safe progressions from beginner to advanced",
+                afa_tag: "Preventive & Adapted Motor Activity (AFA / LM-67)",
+                afa_title: "Adapted Kinesiology for Specific Conditions & Third Age",
+                afa_p1: "Specialized pathways based on Master's Degrees in Preventive and Adapted Motor Sciences (LM-67), designed to safely support individuals living with chronic conditions, joint stiffness, or reduced mobility.",
+                afa_item1_title: "Arthritis & Rheumatoid Arthritis",
+                afa_item1_desc: "Low-impact targeted exercises to preserve joint ROM and reduce pain.",
+                afa_item2_title: "Parkinson's",
+                afa_item2_desc: "Neuromuscular stimulation, balance, and fall-prevention protocols.",
+                afa_item3_title: "Wheelchair & Reduced Mobility",
+                afa_item3_desc: "Adapted motor activity to promote circulation, core tone, and autonomy.",
+                afa_item4_title: "Third Age & Gentle Gymnastics",
+                afa_item4_desc: "Safe maintenance of daily functional autonomy, strength, and coordination.",
+                afa_box_title: "Professionalism",
+                afa_box_desc: "Every program is designed following an initial functional assessment, taking into account any medical limitations (subject to medical clearance) to ensure safe, useful, and effective physical activity.",
+                afa_box_btn: "Request AFA Info",
+                comp_tag: "Quality & Method",
+                comp_title: "Skills in Detail",
+                comp_desc: "The foundations underlying my motor and manual work sessions.",
+                c1_title: "Functional Assessment & FMS",
+                c1_desc: "Biomechanical movement analysis and FMS mobility/stability screening to pinpoint the origin of stiffness and muscular compensations.",
+                c2_title: "Re-education & Re-athletization",
+                c2_desc: "Targeted exercise programs to restore full physical efficiency, recover correct movement patterns, and keep the body healthy.",
+                c3_title: "Sports & Manual Massage",
+                c3_desc: "Muscle decontraction, post-workout regeneration, and preparatory treatments with standards applied even to elite athletes.",
+                c4_title: "Kinesiology Taping",
+                c4_desc: "Decompressing or stabilizing tape applications to support muscle tissues and facilitate drainage and relaxation.",
+                cal_tag: "Personal Training Specialty",
+                cal_title: "Learn to Master Your Body with Calisthenics",
+                cal_desc: "Calisthenics is the art of using your own body weight to develop strength, coordination, balance, and mobility. No matter your starting point, we will build gradual and effective progressions.",
+                cal_f1_title: "Joint Mobility & Motor Control",
+                cal_f1_desc: "Before adding strength, we teach your joints to move freely and safely.",
+                cal_f2_title: "Customized Programs (In-Person or Online)",
+                cal_f2_desc: "Detailed workout plans supported by periodic video calls to check executions together.",
+                contact_tag: "Get in Touch",
+                contact_title: "Book a consultation or request information",
+                contact_desc: "Fill out the form indicating your service of interest. I will get back to you as soon as possible to schedule an appointment or provide all details.",
+                c_mod_label: "Modality",
+                c_mod_val: "In Studio / Home Service / Online",
+                legal_note: "<strong>Professional Note:</strong> Services provided fall under wellness and non-healthcare motor re-education ex Law 4/2013. They have no medical or physiotherapeutic character.",
+                form_name: "Full Name *",
+                form_contact: "Email or Phone *",
+                form_service: "Service of Interest *",
+                opt_default: "Select a service from the menu...",
+                opt_afa: "Adapted Kinesiology & AFA (Arthritis, Parkinson's, reduced mobility)",
+                opt_1: "Manual treatment / Massage (single or 5-session package)",
+                opt_2: "Kinesiology session / Personal Training",
+                opt_3: "Motor consultation and assessment",
+                opt_4: "Kinesiology taping",
+                opt_5: "Online training program (custom plan + 2 video calls)",
+                opt_6: "Home service",
+                form_msg: "Message or Notes",
+                form_submit: "Send Request via Email",
+                footer_copy: "&copy; 2026 All rights reserved. Motor science and wellness activity ex Law 4/2013."
+            }
+        };
+
+        // Funzione per impostare la lingua
+        function setLanguage(lang) {
+            const btnIt = document.getElementById('lang-it');
+            const btnEn = document.getElementById('lang-en');
+            const mBtnIt = document.getElementById('m-lang-it');
+            const mBtnEn = document.getElementById('m-lang-en');
+
+            if (lang === 'en') {
+                btnEn.className = "px-2.5 py-1 rounded-full bg-brand-teal text-white transition";
+                btnIt.className = "px-2.5 py-1 rounded-full text-slate-600 hover:text-brand-teal transition";
+                mBtnEn.className = "px-2 py-0.5 rounded-full bg-brand-teal text-white";
+                mBtnIt.className = "px-2 py-0.5 rounded-full text-slate-600";
+            } else {
+                btnIt.className = "px-2.5 py-1 rounded-full bg-brand-teal text-white transition";
+                btnEn.className = "px-2.5 py-1 rounded-full text-slate-600 hover:text-brand-teal transition";
+                mBtnIt.className = "px-2 py-0.5 rounded-full bg-brand-teal text-white";
+                mBtnEn.className = "px-2 py-0.5 rounded-full text-slate-600";
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[lang] && i18nData[lang][key]) {
+                    el.innerHTML = i18nData[lang][key];
+                }
+            });
+
+            if (i18nData[lang]['meta_title']) {
+                document.title = i18nData[lang]['meta_title'];
+            }
+        }
+    </script>
+</body>
+</html>
